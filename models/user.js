@@ -14,16 +14,6 @@ const userSchema = new mongoose.Schema({
 
 
 
-const snippetsSchema = new mongoose.Schema({
-
-  title: {type: String,  unique: true},
-  language: {type: String},
-  body: {type: String},
-  notes: {type: String},
-  tags: {type: String}
-});
-
-
 userSchema.virtual('password')
     .get(function() {
         return null
@@ -53,9 +43,7 @@ userSchema.statics.authenticate = function(username, password, done) {
 
 
 
-const Snippet = mongoose.model("snippets", snippetsSchema);
 const User = mongoose.model("users", userSchema);
 
 
 module.exports = User;
-module.exports = Snippet;

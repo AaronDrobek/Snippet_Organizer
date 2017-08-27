@@ -1,0 +1,98 @@
+/**{
+  border: 1px solid green;
+}*/
+body{
+  background: lightblue;
+  width: 100%;
+  height: 100%;
+}
+.container{
+  width: 100vw;
+}
+nav:before {
+	content:'';
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 0px;
+	background: rgba(255,255,255,0.3);
+	border-radius: 5px;
+	transition: all 2s ease;
+}
+/*
+nav:hover:before {
+	height: 42px;
+}*/
+
+.login{
+  margin-left: 40vw;
+  font-size: 20pt;
+  font-family: 'Merriweather', serif;
+}
+#signup{
+  margin-left: 40vw;
+}
+
+nav{
+  color: grey;
+  font-family: 'Merriweather', serif;
+  font-size: 18pt;
+  font-weight: 300;
+  margin-right: 10vw;
+  margin-left: 3vw;
+  display: flex;
+  justify-content: space-between;
+}
+nav a{
+  color: black;
+  text-decoration: none;
+}
+nav a:hover{
+  color: red;
+}
+#newSnippet{
+  box-shadow: 10px 10px 5px #888888;
+
+  margin-top: 3vw;
+  margin-left: 10vw;
+  width: 80vw;
+  border-radius: 20%;
+}
+
+.languages{
+  box-shadow: 10px 10px 5px #888888;
+  margin-top: 2vw;
+  padding-top: 2vw;
+  background: lightgrey;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100vw;
+}
+.create_form{
+  font-size: 18pt;
+  margin-left: 2vw;
+  font-family: 'Merriweather', serif;
+
+}
+.logos{
+  margin-top: 3vw;
+  margin-right: 2vw;
+  margin-left: 1vw;
+  width: 20vw;
+  height: 15vw;
+}
+.images{
+  box-shadow: 10px 10px 5px #888888;
+  margin-left: 3vw;
+  width: 15vw;
+  height: 8vw;
+}
+
+.create_block{
+  display: flex;
+  align-content: flex-start;
+  width: 100vw;
+  height: 43vw;
+}
