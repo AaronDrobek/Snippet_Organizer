@@ -5,14 +5,13 @@ const Snippet = require("../models/snippets")
 const mongoose =require("mongoose");
 const passport = require('passport');
 
-mongoose.connect("mongodb://localhost:27017/snippet");
 
 const requireLogin = function (req, res, next) {
   if (req.user) {
     console.log(req.user)
     next()
   } else {
-    res.redirect('/index');
+    res.redirect('/');
   }
 };
 
@@ -49,11 +48,12 @@ router.post("/signup", function(req,res){
 
 router.post("/create", function(req,res){
   Snippet.create({
+    username: req.body.username,
     title: req.body.title,
-    language: req.body.language,
+    language: req.body.language.toLowerCase(),
     body: req.body.body,
     notes: req.body.notes,
-    tags: req.body.tags
+    tags: req.body.tags.toLowerCase()
   })
 
 .then(function(data){
@@ -65,7 +65,7 @@ router.post("/create", function(req,res){
   })
 })
 
-router.get('/allSnippets',  function (req, res) {
+router.get('/allSnippets', requireLogin,  function (req, res) {
   Snippet.find({}).sort("name")
   .then(function(snippets) {
     data = snippets
@@ -76,12 +76,6 @@ router.get('/allSnippets',  function (req, res) {
     next(err);
   })
 });
-//
-// router.get("/", login, function(req, res) {
-//   res.render("language", {
-//     messages: res.locals.getMessages()
-//   });
-// });
 
 router.get("/", function (req,res){
   res.render("index")
@@ -91,34 +85,57 @@ router.get("/signup", function (req,res){
   res.render("signup")
 })
 
-router.get("/language", function (req,res){
+router.get("/language", requireLogin, function (req,res){
   res.render("language")
 })
 router.get("/create", function (req,res){
   res.render("create")
 })
-// router.get("/allSnippets", function (req,res){
-//   res.render("allSnippets")
-// })
+
 
 router.get("/logout", function(req, res) {
   req.logout();
   res.redirect("/");
 });
+router.get("/specific/:language", function(req,res){
+  console.log(req.params.language);
+  Snippet.find({language: req.params.language})
+  .then(function(snippets){
+    res.render("allSnippets", {snippets: snippets});
+  })
+});
+router.get("/allSnippets/:title", function(req,res){
+  console.log(req.params.language);
+  Snippet.find({title: req.params.title})
+  .then(function(snippets){
+    res.render("edit", {snippets: snippets});
+  })
+});
+router.get("/tags/:tags", function(req,res){
+  console.log(req.params.tags);
+  Snippet.find({tags: req.params.tags})
+  .then(function(snippets){
+    res.render("allSnippets", {snippets: snippets});
+  })
+});
+router.post("/delete/:title", function(req, res){
+    let id = req.params.title
+      Snippet.deleteOne({title:id})
 
 
-//on view all snippets
+        .then(function(data){
+          console.log(data);
+          res.redirect('/allSnippets')
+        })
+        .catch(function(err){
+          console.log(err);
+        })
+      })
 
-// router.get('/allUsers', requireLogin, function (req, res) {
-//   User.find({}).sort("name")
-//   .then(function(users) {
-//     data = users
-//     res.render('allUsers', {users: users});
-//   })
-//   .catch(function(err) {
-//     console.log(err);
-//     next(err);
-//   })
-// });
+
+
+
+
+
 
 module.exports = router;

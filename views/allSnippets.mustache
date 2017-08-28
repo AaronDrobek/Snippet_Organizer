@@ -1,16 +1,41 @@
-{{#snippets}}
-<a href="/allSnippets">
-  <div class="box">
-    <h1 class= "Title"> {{title}} </h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../style.css">
+  </head>
 
-    <h3 class= "Language">{{language}}</h3>
-    <textarea name="body" rows="8" cols="80">{{body}}</textarea>
+  <div class="box_block">
+    {{#snippets}}
+    <div class="box">
+      <a href="/allSnippets/{{title}}">
 
-    <textarea name="notes" rows="8" cols="80">{{notes}}</textarea>
-    <h3 class="tags">{{tags}}</h3>
+
+        <h1 class= "Title">Title: {{title}} </h1>
+
+        <h2>Username: {{username}}</h2>
+
+        <h3 class= "Language">Language: {{language}}</h3>
+        <p>body:</p>
+        <h4>{{body}}</h4>
+        <p>notes:</p>
+        <h4>{{notes}}</h4>
+      </a>
+      <p>Tags:</p>
+      <a href="/tags/{{tags}}">
+      <h3 class="tags">{{#tags}}{{.}}{{/tags}}</h3></a>
+
+
+    </div>
+
+    {{/snippets}}
+    {{^snippets}}
+    <p>No snippets were found</p>
+    {{/snippets}}
   </div>
-</a>
-{{/snippets}}
-{{^snippets}}
-  <p>No snippets were found</p>
-{{/snippets}}
+
+  <body>
+
+  </body>
+  </html>

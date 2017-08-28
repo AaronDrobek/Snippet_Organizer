@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../style.css">
+  </head>
+  <body>
+    <div class="box_block">
+      {{#snippets}}
+      <div class="box">
+        <a href="/edit">
+
+
+
+          <h1 class= "Title">Title: {{title}} </h1>
+
+          <h2>Username: {{username}}</h2>
+
+          <h3 class= "Language">Language: {{language}}</h3>
+          <p>body:</p>
+          <h4>{{body}}</h4>
+          <p>notes:</p>
+          <h4>{{notes}}</h4>
+          </a>
+          <p>Tags:</p>
+          <a href="/tags{{tags}}">
+          <h3 class="tags">{{#tags}}{{.}}{{/tags}}</h3></a>
+          <form class="" action="/delete/{{title}}" method="post">
+            <button type="submit" name="button">Delete</button>
+          </form>
+
+
+      </div>
+
+
+      {{/snippets}}
+      {{^snippets}}
+      <p>No snippets were found</p>
+      {{/snippets}}
+    </div>
+
+  </body>
+  </html>
