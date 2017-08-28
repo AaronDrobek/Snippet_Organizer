@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
-const Snippet = require("../models/user")
+const Snippet = require("../models/snippets")
 const mongoose =require("mongoose");
 const passport = require('passport');
 
@@ -64,6 +64,18 @@ router.post("/create", function(req,res){
     console.log(err);
   })
 })
+
+router.get('/allSnippets',  function (req, res) {
+  Snippet.find({}).sort("name")
+  .then(function(snippets) {
+    data = snippets
+    res.render('allSnippets', {snippets: snippets});
+  })
+  .catch(function(err) {
+    console.log(err);
+    next(err);
+  })
+});
 //
 // router.get("/", login, function(req, res) {
 //   res.render("language", {
@@ -85,6 +97,9 @@ router.get("/language", function (req,res){
 router.get("/create", function (req,res){
   res.render("create")
 })
+// router.get("/allSnippets", function (req,res){
+//   res.render("allSnippets")
+// })
 
 router.get("/logout", function(req, res) {
   req.logout();

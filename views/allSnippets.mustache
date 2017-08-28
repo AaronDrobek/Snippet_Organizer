@@ -1,0 +1,16 @@
+{{#snippets}}
+<a href="/allSnippets">
+  <div class="box">
+    <h1 class= "Title"> {{title}} </h1>
+
+    <h3 class= "Language">{{language}}</h3>
+    <textarea name="body" rows="8" cols="80">{{body}}</textarea>
+
+    <textarea name="notes" rows="8" cols="80">{{notes}}</textarea>
+    <h3 class="tags">{{tags}}</h3>
+  </div>
+</a>
+{{/snippets}}
+{{^snippets}}
+  <p>No snippets were found</p>
+{{/snippets}}
