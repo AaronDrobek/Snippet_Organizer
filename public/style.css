@@ -7,6 +7,9 @@ body{
   height: 100%;
 }
 .box{
+  padding-left: 1vw;
+  box-shadow: 10px 10px 5px #888888;
+  background: lightgrey;
   margin-left: 2vw;
   margin-right: 2vw;
   width: 25vw;
